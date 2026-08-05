@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hockey Kids League Uruguay</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#111;--bg2:#1a1a1a;--bg3:#222;--bg4:#2a2a2a;--bg5:#333;
+  --border:#2e2e2e;--border2:#3a3a3a;
+  --text:#f2f2f2;--text2:#999;--text3:#555;
+  --green:#00e676;--green-dim:#00b359;--green-bg:rgba(0,230,118,.09);--green-bg2:rgba(0,230,118,.05);
+  --gold:#ffd54f;--gold-bg:rgba(255,213,79,.1);
+  --red:#ff5252;--red-bg:rgba(255,82,82,.08);
+  --blue:#448aff;
+  --r:14px;--rs:10px;--rxs:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* ── HEADER ── */
+header{background:rgba(17,17,17,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);position:sticky;top:0;z-index:200;border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;padding:0 28px;height:62px;gap:0}
+.brand{display:flex;align-items:center;gap:10px;margin-right:32px;flex-shrink:0;cursor:pointer}
+.brand-logo{width:36px;height:36px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#000;letter-spacing:-1px;flex-shrink:0}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-size:13px;font-weight:800;color:var(--text);letter-spacing:-.3px}
+.brand-sub{font-size:9px;color:var(--text3);letter-spacing:1px;text-transform:uppercase}
+.main-nav{display:flex;gap:0;overflow-x:auto;flex:1}
+.main-nav::-webkit-scrollbar{display:none}
+.main-nav button{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--text3);padding:0 13px;height:62px;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:color .15s}
+.main-nav button:hover{color:var(--text2)}
+.main-nav button.active{color:var(--text);border-bottom-color:var(--green)}
+.nav-actions{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.btn-login{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rxs);padding:7px 14px;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-login:hover{border-color:var(--border2);color:var(--text)}
+.btn-inscribir{background:var(--green);border:none;border-radius:var(--rxs);padding:8px 16px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;color:#000;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-inscribir:hover{background:#1aff88;transform:translateY(-1px)}
+
+/* ── PAGES ── */
+.page{display:none}.page.active{display:block}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,#051a0d 0%,#0a0a0a 55%);padding:90px 28px 0;text-align:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,230,118,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,.06) 1px,transparent 1px);background-size:50px 50px}
+.hero-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(0,230,118,.18) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-bg);border:1px solid rgba(0,230,118,.25);border-radius:20px;padding:6px 16px;font-size:11px;font-weight:600;color:var(--green);letter-spacing:.5px;margin-bottom:24px;position:relative}
+.hero-badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-size:clamp(44px,8vw,88px);font-weight:900;line-height:.92;color:var(--text);letter-spacing:-3px;margin-bottom:20px;position:relative;font-style:italic}
+.hero h1 span{color:var(--green);font-style:normal}
+.hero-tagline{font-size:16px;color:var(--text2);margin-bottom:10px;position:relative;font-weight:400;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.5}
+.hero-cats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0 0;position:relative}
+.hero-cat{background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:600;color:var(--text2)}
+.hero-cta{display:flex;justify-content:center;gap:10px;margin:28px 0;position:relative;flex-wrap:wrap}
+.cta-primary{background:var(--green);color:#000;border:none;border-radius:var(--rs);padding:14px 28px;font-family:'Inter',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .15s;letter-spacing:-.2px}
+.cta-primary:hover{background:#1aff88;transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,230,118,.25)}
+.cta-secondary{background:none;color:var(--text);border:1px solid var(--border2);border-radius:var(--rs);padding:14px 28px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s}
+.cta-secondary:hover{border-color:var(--border2);background:var(--bg3)}
+.hero-stats{display:flex;justify-content:center;border-top:1px solid var(--border);margin-top:0;position:relative}
+.h-stat{padding:20px 40px;border-right:1px solid var(--border);text-align:center}
+.h-stat:last-child{border-right:none}
+.h-stat-num{font-size:32px;font-weight:800;color:var(--text);line-height:1;letter-spacing:-1px}
+.h-stat-num.g{color:var(--green)}
+.h-stat-lbl{font-size:9px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+
+/* ── SOBRE SECCIONES LANDING ── */
+.container{max-width:1200px;margin:0 auto;padding:60px 28px}
+.sec-title{font-size:32px;font-weight:800;color:var(--text);letter-spacing:-1px;margin-bottom:8px;line-height:1.1}
+.sec-sub{font-size:14px;color:var(--text2);margin-bottom:36px;max-width:560px;line-height:1.6}
+.sec-lbl{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text3);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* FEATURE GRID */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:40px}
+.feat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px 20px;transition:border-color .2s}
+.feat-card:hover{border-color:var(--border2)}
+.feat-icon{font-size:28px;margin-bottom:12px}
+.feat-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:5px}
+.feat-desc{font-size:12px;color:var(--text3);line-height:1.5}
+
+/* CATS */
+.cats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:40px}
+.cat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;text-align:center;transition:border-color .2s}
+.cat-card:hover{border-color:var(--green-dim)}
+.cat-num{font-size:36px;font-weight:900;color:var(--green);letter-spacing:-1px;line-height:1;font-style:italic}
+.cat-label{font-size:14px;font-weight:700;color:var(--text);margin:8px 0 4px}
+.cat-ages{font-size:11px;color:var(--text3)}
+
+/* TORNEOS */
+.torneos-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px}
+.torneo-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px 26px}
+.torneo-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:14px}
+.tag-a{background:var(--green-bg);color:var(--green);border:1px solid rgba(0,230,118,.2)}
+.tag-c{background:var(--gold-bg);color:var(--gold);border:1px solid rgba(255,213,79,.2)}
+.torneo-name{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.5px;margin-bottom:4px}
+.torneo-period{font-size:13px;color:var(--text3);margin-bottom:16px}
+.torneo-items{list-style:none;display:flex;flex-direction:column;gap:6px}
+.torneo-items li{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:8px}
+.torneo-items li::before{content:'';width:4px;height:4px;background:var(--green);border-radius:50%;flex-shrink:0}
+
+/* EXPERIENCIA */
+.exp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:40px}
+.exp-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:16px;text-align:center}
+.exp-emoji{font-size:22px;margin-bottom:8px}
+.exp-text{font-size:12px;font-weight:500;color:var(--text2)}
+
+/* INSCRIPCION PANEL */
+.inscripcion-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;align-items:start}
+.insc-left{display:flex;flex-direction:column;gap:14px}
+.insc-item{display:flex;align-items:flex-start;gap:12px;padding:16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs)}
+.insc-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.insc-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
+.insc-desc{font-size:11px;color:var(--text3);line-height:1.4}
+
+/* FORMULARIO */
+.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.form-header{background:var(--green);padding:18px 22px}
+.form-header h3{font-size:16px;font-weight:800;color:#000;letter-spacing:-.3px}
+.form-header p{font-size:11px;color:rgba(0,0,0,.6);margin-top:2px}
+.form-body{padding:22px}
+.form-group{margin-bottom:14px}
+.form-group:last-child{margin-bottom:0}
+.form-label{display:block;font-size:11px;font-weight:600;color:var(--text2);letter-spacing:.4px;margin-bottom:6px}
+.form-input{width:100%;padding:10px 13px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rxs);font-family:'Inter',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .15s;appearance:none;-webkit-appearance:none}
+.form-input:focus{border-color:var(--green)}
+.form-input::placeholder{color:var(--text3)}
+select.form-input{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23555' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
+select.form-input option{background:var(--bg3)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-form{width:100%;padding:13px;background:var(--green);color:#000;border:none;border-radius:var(--rxs);font-family:'Inter',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:all .15s;margin-top:4px}
+.btn-form:hover{background:#1aff88}
+.form-success{display:none;background:var(--green-bg);border:1px solid rgba(0,230,118,.2);border-radius:var(--rxs);padding:14px;text-align:center;color:var(--green);font-size:13px;font-weight:600;margin-top:10px}
+
+/* CONTACTO */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;text-align:center;cursor:pointer;transition:border-color .2s}
+.contact-card:hover{border-color:var(--green-dim)}
+.contact-icon{font-size:28px;margin-bottom:10px}
+.contact-type{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px}
+.contact-val{font-size:11px;color:var(--text3)}
+.social-row{display:flex;justify-content:center;gap:10px}
+.social-btn{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rxs);padding:10px 20px;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:8px}
+.social-btn:hover{border-color:var(--border2);color:var(--text)}
+
+/* ══════════════════════
+   LIGA SECTION (stats, tabla etc)
+══════════════════════ */
+.liga-container{max-width:1200px;margin:0 auto;padding:40px 28px}
+
+/* PARTIDO CARD */
+.partido{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;transition:border-color .2s,transform .12s}
+.partido:hover{border-color:var(--border2);transform:translateY(-1px)}
+.partido-meta{padding:9px 20px;background:var(--bg3);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.pm-left{font-size:11px;color:var(--text2);display:flex;align-items:center;gap:8px}
+.pm-tag{background:var(--bg4);border-radius:6px;padding:2px 8px;font-size:10px;font-weight:600;color:var(--text3)}
+.partido-body{padding:20px 22px}
+.marcador{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;margin-bottom:18px}
+.eq-nombre{font-size:16px;font-weight:700;color:var(--text)}
+.eq-cat{display:inline-block;font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;margin-top:3px;letter-spacing:.5px}
+.eq-b{text-align:right}
+.score-nums{font-size:50px;font-weight:900;line-height:1;display:flex;align-items:center;gap:8px;font-style:italic}
+.sc-a{color:var(--green)}.sc-sep{color:var(--border2)}.sc-b{color:var(--text3)}
+.stats-sec{border-top:1px solid var(--border);padding-top:14px}
+.stat-row{display:grid;grid-template-columns:38px 1fr 38px;align-items:center;gap:8px;margin-bottom:8px}
+.sv{font-size:12px;font-weight:700;text-align:center}
+.sv-a{color:var(--green)}.sv-b{color:var(--gold)}
+.bar-col{display:flex;flex-direction:column;gap:3px}
+.bar-track{height:5px;background:var(--bg4);border-radius:99px;display:flex;overflow:hidden}
+.ba{background:var(--green);border-radius:99px 0 0 99px}
+.bb{background:var(--gold);border-radius:0 99px 99px 0}
+.bar-lbl{font-size:9px;color:var(--text3);text-align:center;letter-spacing:.6px;text-transform:uppercase}
+.mvp-strip{background:var(--gold-bg);border:1px solid rgba(255,213,79,.2);border-radius:var(--rxs);padding:12px 16px;display:flex;align-items:center;gap:12px;margin-top:14px}
+.mvp-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:700}
+.mvp-name{font-size:14px;font-weight:700;color:var(--text);margin-top:1px}
+.mvp-detail{font-size:11px;color:var(--text2);margin-top:1px}
+
+/* STATUS */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:20px;font-weight:700}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.badge-fin{background:rgba(0,230,118,.1);color:var(--green)}.badge-fin::before{background:var(--green)}
+.badge-prx{background:var(--gold-bg);color:var(--gold)}.badge-prx::before{background:var(--gold)}
+.badge-pend{background:var(--bg4);color:var(--text3)}.badge-pend::before{background:var(--text3)}
+
+/* TABLE */
+.tabla-wrap{overflow-x:auto}
+.tabla-wrap table{width:100%;border-collapse:collapse;font-size:13px}
+.tabla-wrap thead th{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);padding:9px 10px;border-bottom:1px solid var(--border);text-align:center;font-weight:600;white-space:nowrap}
+.tabla-wrap thead th.tl{text-align:left}
+.tabla-wrap tbody td{padding:12px 10px;border-bottom:1px solid var(--border);text-align:center;vertical-align:middle;color:var(--text2)}
+.tabla-wrap tbody td.tl{text-align:left}
+.tabla-wrap tbody tr:last-child td{border-bottom:none}
+.tabla-wrap tbody tr:hover{background:rgba(255,255,255,.02)}
+.pos{display:inline-flex;width:22px;height:22px;border-radius:50%;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.p1{background:rgba(255,213,79,.15);color:var(--gold)}.p2{background:rgba(150,150,150,.12);color:#aaa}.p3{background:rgba(180,100,60,.15);color:#c88}.pn{background:var(--bg4);color:var(--text3)}
+.tc{display:flex;align-items:center;gap:8px}
+.tdot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;border:1.5px solid rgba(255,255,255,.05)}
+.dpos{color:var(--green);font-weight:700}.dneg{color:var(--red);font-weight:700}.dz{color:var(--text3)}
+
+/* GOLEADORES */
+.gol-item{display:flex;align-items:center;gap:12px;padding:13px 20px;border-bottom:1px solid var(--border)}
+.gol-item:last-child{border-bottom:none}
+.gol-rank{font-size:18px;font-weight:800;width:30px;text-align:center;flex-shrink:0;font-style:italic}
+.r1{color:var(--gold)}.r2{color:var(--text3)}.r3{color:#c88}.rn{color:var(--border2)}
+.gol-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;border:1.5px solid rgba(255,255,255,.05)}
+.gol-info{flex:1}
+.gol-nm{font-size:13px;font-weight:600;color:var(--text)}
+.gol-tm{font-size:11px;color:var(--text3);margin-top:1px}
+.gol-ct{font-size:18px;font-weight:800;color:var(--green);font-style:italic}
+.gol-ct span{font-size:10px;color:var(--text3);font-weight:400;font-style:normal}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.stat-mini{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.stat-mini-num{font-size:30px;font-weight:800;color:var(--green);line-height:1;font-style:italic}
+.stat-mini-lbl{font-size:10px;color:var(--text3);margin-top:5px;letter-spacing:.3px}
+.prox-item{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);gap:10px}
+.prox-item:last-child{border-bottom:none}
+.prox-vs{font-size:13px;font-weight:600;color:var(--text)}
+.prox-meta{font-size:11px;color:var(--text3);margin-top:2px;display:flex;align-items:center;gap:5px}
+.pdot{width:3px;height:3px;background:var(--border2);border-radius:50%}
+
+/* COLORS EQUIPOS */
+.t1{background:rgba(0,200,100,.2);color:#3ee880}
+.t2{background:rgba(255,80,80,.2);color:#ff8080}
+.t3{background:rgba(100,100,255,.2);color:#9090ff}
+.t4{background:rgba(255,200,0,.2);color:#ffd040}
+.t5{background:rgba(0,180,255,.2);color:#50c8ff}
+.t6{background:rgba(200,60,200,.2);color:#e080e0}
+.t7{background:rgba(255,140,0,.2);color:#ffaa40}
+.t8{background:rgba(0,200,200,.2);color:#40d0d0}
+
+/* ══════════════════════
+   PANEL JUEZ
+══════════════════════ */
+.admin-wrap{max-width:740px;margin:0 auto;padding:40px 28px}
+.admin-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px}
+.admin-hd{padding:13px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--bg3)}
+.admin-step{font-size:9px;letter-spacing:2px;font-weight:700;color:var(--green);background:var(--green-bg);padding:3px 8px;border-radius:6px}
+.admin-hd h3{font-size:13px;font-weight:600;color:var(--text)}
+.admin-bd{padding:20px}
+.fl{display:block;font-size:10px;font-weight:600;color:var(--text2);letter-spacing:.5px;margin-bottom:6px}
+select,input[type=text],input[type=number]{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rxs);font-family:'Inter',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .15s;appearance:none;-webkit-appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%23555' d='M5 7L0 2h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:30px}
+select:focus,input:focus{border-color:var(--green)}
+select option{background:var(--bg3)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px}
+.fg{margin-bottom:13px}.fg:last-child{margin-bottom:0}
+.choice-wrap{display:flex;flex-wrap:wrap;gap:7px;margin-top:4px}
+.ch{border:1.5px solid var(--border2);border-radius:var(--rxs);background:var(--bg3);padding:8px 13px;font-size:11px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;line-height:1.3;text-align:center}
+.ch:hover{color:var(--text);background:var(--bg4)}
+.ch small{display:block;font-size:9px;color:var(--text3);margin-top:2px;font-weight:400}
+.ch.sel{border-color:var(--green);background:var(--green-bg);color:var(--green);font-weight:700}
+.ch.sel small{color:rgba(0,230,118,.5)}
+.score-row{display:flex;align-items:center;gap:14px;padding:4px 0}
+.sc-label{flex:1;font-size:14px;font-weight:700;color:var(--text)}
+.sc-label.r{text-align:right}
+.counter{display:flex;align-items:center;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rxs);overflow:hidden}
+.counter button{width:38px;height:38px;border:none;background:none;cursor:pointer;font-size:18px;color:var(--text2);transition:background .1s;font-weight:700}
+.counter button:hover{background:var(--bg4);color:var(--text)}
+.counter span{width:48px;text-align:center;font-size:26px;font-weight:900;color:var(--green);font-style:italic;line-height:1}
+.score-sep-lg{font-size:24px;color:var(--border2);font-weight:700}
+.mvp-pick{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:7px;margin-top:5px}
+.mvp-c{background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--rxs);padding:11px 9px;cursor:pointer;transition:all .15s;text-align:center}
+.mvp-c:hover{border-color:var(--border2)}
+.mvp-c.sel{border-color:var(--gold);background:var(--gold-bg)}
+.mc-av{width:34px;height:34px;border-radius:50%;margin:0 auto 7px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.mc-nm{font-size:11px;font-weight:700;color:var(--text);line-height:1.2}
+.mc-tm{font-size:9px;color:var(--text3);margin-top:2px}
+.mvp-c.sel .mc-nm{color:var(--gold)}
+.derived{background:var(--green-bg2);border:1px solid rgba(0,230,118,.12);border-radius:var(--rxs);padding:16px 18px;margin-top:4px}
+.derived-title{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:12px}
+.derived-g{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.d-stat{text-align:center}
+.d-num{font-size:22px;font-weight:800;color:var(--text);line-height:1;font-style:italic}
+.d-lbl{font-size:9px;color:var(--text3);margin-top:2px;letter-spacing:.5px;text-transform:uppercase}
+.btn-save{width:100%;padding:14px;background:var(--green);color:#000;border:none;border-radius:var(--rxs);font-family:'Inter',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .15s}
+.btn-save:hover{background:#1aff88;transform:translateY(-1px)}
+.ok-msg{display:none;background:var(--green-bg);border:1px solid rgba(0,230,118,.2);border-radius:var(--rxs);padding:14px;text-align:center;color:var(--green);font-size:13px;font-weight:600;margin-top:12px}
+
+/* ══════════════════════
+   LOGIN MODAL
+══════════════════════ */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);width:100%;max-width:400px;overflow:hidden;animation:fadeUp .2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.modal-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-header h3{font-size:15px;font-weight:700;color:var(--text)}
+.modal-close{background:none;border:none;color:var(--text3);font-size:20px;cursor:pointer;transition:color .15s;line-height:1}
+.modal-close:hover{color:var(--text)}
+.modal-body{padding:22px}
+.login-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--rxs);overflow:hidden;margin-bottom:20px}
+.login-tab{flex:1;padding:9px;background:none;border:none;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;color:var(--text3);cursor:pointer;transition:all .15s}
+.login-tab.active{background:var(--green);color:#000}
+.login-form{display:none}
+.login-form.active{display:block}
+.login-role{display:flex;gap:8px;margin-bottom:16px}
+.role-btn{flex:1;padding:10px;background:var(--bg3);border:1.5px solid var(--border2);border-radius:var(--rxs);font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;text-align:center}
+.role-btn:hover{color:var(--text)}
+.role-btn.sel{border-color:var(--green);background:var(--green-bg);color:var(--green)}
+.role-icon{font-size:18px;display:block;margin-bottom:4px}
+.btn-login-submit{width:100%;padding:12px;background:var(--green);color:#000;border:none;border-radius:var(--rxs);font-family:'Inter',sans-serif;font-size:13px;font-weight:800;cursor:pointer;margin-top:14px;transition:background .15s}
+.btn-login-submit:hover{background:#1aff88}
+.login-divider{text-align:center;font-size:11px;color:var(--text3);margin:14px 0}
+.formacion-section{display:none;margin-top:20px;border-top:1px solid var(--border);padding-top:18px}
+.formacion-section.visible{display:block}
+.player-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.player-num{width:28px;height:28px;background:var(--bg4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text3);flex-shrink:0}
+.player-input{flex:1;padding:8px 10px;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--rxs);font-family:'Inter',sans-serif;font-size:12px;color:var(--text);outline:none}
+.player-input:focus{border-color:var(--green)}
+.player-input::placeholder{color:var(--text3)}
+.confirm-badge{display:none;background:var(--green-bg);border:1px solid rgba(0,230,118,.2);border-radius:var(--rxs);padding:10px;text-align:center;color:var(--green);font-size:12px;font-weight:600;margin-top:10px}
+
+/* ══ GALERÍA ══ */
+.galeria-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:40px}
+.galeria-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;transition:border-color .2s}
+.galeria-item:hover{border-color:var(--border2)}
+
+/* COLEGIOS */
+.colegios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:40px}
+.colegio-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px 20px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s}
+.colegio-card:hover{border-color:var(--border2)}
+.colegio-icon{font-size:26px;flex-shrink:0}
+.colegio-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+.colegio-desc{font-size:11px;color:var(--text3);line-height:1.5}
+
+/* REGLAMENTO */
+.regl-section{margin-bottom:28px}
+.regl-h{font-size:16px;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.regl-h::before{content:'';width:3px;height:18px;background:var(--green);border-radius:2px;flex-shrink:0}
+.regl-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.regl-list li{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:10px;line-height:1.4}
+.regl-list li::before{content:'';width:4px;height:4px;background:var(--green);border-radius:50%;flex-shrink:0}
+.regl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:24px}
+.regl-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:16px 18px}
+.regl-card-title{font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 28px;margin-top:80px}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer-brand{font-size:16px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:10px;font-style:italic}
+.footer-brand .dot{width:8px;height:8px;background:var(--green);border-radius:50%}
+.footer-text{font-size:11px;color:var(--text3);margin-top:4px}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.footer-links span{font-size:11px;color:var(--text3);cursor:pointer;transition:color .15s}
+.footer-links span:hover{color:var(--text2)}
+
+@media(max-width:768px){
+  .nav-inner{padding:0 16px}
+  .brand-sub{display:none}
+  .main-nav button{padding:0 10px;font-size:11px}
+  .hero{padding:60px 16px 0}
+  .hero h1{font-size:44px;letter-spacing:-2px}
+  .h-stat{padding:14px 18px}
+  .cats-grid{grid-template-columns:1fr 1fr}
+  .torneos-grid,.inscripcion-grid,.g2,.colegios-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .row2{grid-template-columns:1fr}
+  .row4{grid-template-columns:1fr 1fr}
+  .container,.liga-container,.admin-wrap{padding:28px 16px}
+  .feat-grid,.exp-grid{grid-template-columns:1fr 1fr}
+  .g4{grid-template-columns:1fr 1fr}
+  .nav-actions .btn-inscribir{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN MODAL ══ -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Ingresar a la Liga</h3>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="login-tabs">
+        <button class="login-tab active" onclick="switchLoginTab('arbitro',this)">⚖️ Árbitro / Juez</button>
+        <button class="login-tab" onclick="switchLoginTab('equipo',this)">🏑 Equipo</button>
+      </div>
+
+      <!-- LOGIN ÁRBITRO -->
+      <div class="login-form active" id="lf-arbitro">
+        <div class="fg"><label class="fl">Código de árbitro</label><input type="text" placeholder="ej: ARB-2026-001"></div>
+        <div class="fg"><label class="fl">Contraseña</label><input type="text" placeholder="••••••••"></div>
+        <button class="btn-login-submit" onclick="loginArbitro()">Ingresar como árbitro →</button>
+      </div>
+
+      <!-- LOGIN EQUIPO -->
+      <div class="login-form" id="lf-equipo">
+        <div class="fg"><label class="fl">Seleccioná tu equipo</label>
+          <select id="login-equipo-sel">
+            <option value="">— elegir equipo —</option>
+            <option value="LP">Los Pumas Sub 8</option>
+            <option value="TR">Las Tormentas Sub 10</option>
+            <option value="LR">Los Rayos Sub 6</option>
+            <option value="LV">Las Volcánicas Sub 12</option>
+            <option value="LS">Los Supersonics Sub 10</option>
+            <option value="LF">Las Furias Sub 8</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Código del equipo</label><input type="text" placeholder="ej: EQ-PUMAS-2026"></div>
+        <button class="btn-login-submit" onclick="loginEquipo()">Ingresar como equipo →</button>
+
+        <div class="formacion-section" id="formacion-panel">
+          <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:14px">✓ Confirmar formación — <span id="eq-nombre-form">equipo</span></div>
+          <div id="players-list"></div>
+          <button class="btn-save" style="margin-top:12px" onclick="confirmarFormacion()">Confirmar formación ✓</button>
+          <div class="confirm-badge" id="confirm-badge">✅ Formación confirmada. El árbitro ya la puede ver.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="nav-inner">
+    <div class="brand" onclick="goTo('home',document.querySelector('.main-nav button'))">
+      <div class="brand-logo">HK</div>
+      <div class="brand-text">
+        <div class="brand-name">Hockey Kids League</div>
+        <div class="brand-sub">Uruguay · Desde 2026</div>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <button class="active" onclick="goTo('home',this)">Home</button>
+      <button onclick="goTo('sobre',this)">Sobre la Liga</button>
+      <button onclick="goTo('reglamento',this)">Reglamento</button>
+      <button onclick="goTo('torneos',this)">Torneos</button>
+      <button onclick="goTo('partidos',this)">Partidos</button>
+      <button onclick="goTo('tabla',this)">Tabla</button>
+      <button onclick="goTo('goleadores',this)">Goleadores</button>
+      <button onclick="goTo('proximos',this)">Próximos</button>
+      <button onclick="goTo('inscripcion',this)">Inscripción</button>
+      <button onclick="goTo('colegios',this)">Colegios</button>
+      <button onclick="goTo('galeria',this)">Galería</button>
+      <button onclick="goTo('contacto',this)">Contacto</button>
+      <button onclick="goTo('admin',this)">⚖️ Juez</button>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn-login" onclick="openModal()">Ingresar</button>
+      <button class="btn-inscribir" onclick="goTo('inscripcion',document.querySelectorAll('.main-nav button')[8])">Inscribir equipo</button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════
+     HOME
+══════════════════════════════════ -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-badge"><div class="hero-badge-dot"></div>La primera liga infantil de hockey en Uruguay</div>
+    <h1>Hockey<br><span>Kids</span><br>League</h1>
+    <p class="hero-tagline">Competencia real para niños y niñas de 4 a 12 años.<br>Hockey 5 · Tabla de posiciones · Stats · MVP</p>
+    <div class="hero-cats">
+      <span class="hero-cat">Sub 6</span>
+      <span class="hero-cat">Sub 8</span>
+      <span class="hero-cat">Sub 10</span>
+      <span class="hero-cat">Sub 12</span>
+      <span class="hero-cat">5 vs 5</span>
+      <span class="hero-cat">Mixto e inclusivo</span>
+    </div>
+    <div class="hero-cta">
+      <button class="cta-primary" onclick="goTo('inscripcion',document.querySelectorAll('.main-nav button')[8])">Inscribir equipo →</button>
+      <button class="cta-secondary" onclick="goTo('sobre',document.querySelectorAll('.main-nav button')[1])">Sobre la liga</button>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><div class="h-stat-num g">4</div><div class="h-stat-lbl">categorías</div></div>
+      <div class="h-stat"><div class="h-stat-num">6</div><div class="h-stat-lbl">equipos</div></div>
+      <div class="h-stat"><div class="h-stat-num g">34</div><div class="h-stat-lbl">goles</div></div>
+      <div class="h-stat"><div class="h-stat-num">5</div><div class="h-stat-lbl">mvps</div></div>
+      <div class="h-stat"><div class="h-stat-num g">2</div><div class="h-stat-lbl">torneos / año</div></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="sec-lbl">último partido</div>
+    <div class="partido">
+      <div class="partido-meta"><div class="pm-left"><span class="pm-tag">Fecha 3</span>21 jun · Club Náutico · Sub 10</div><span class="badge badge-fin">Finalizado</span></div>
+      <div class="partido-body">
+        <div class="marcador">
+          <div><div class="eq-nombre">Los Pumas</div><span class="eq-cat t1">Sub 10</span></div>
+          <div><div class="score-nums"><span class="sc-a">3</span><span class="sc-sep">–</span><span class="sc-b">1</span></div></div>
+          <div class="eq-b"><div class="eq-nombre">Las Tormentas</div><span class="eq-cat t2">Sub 10</span></div>
+        </div>
+        <div class="stats-sec">
+          <div class="stat-row"><div class="sv sv-a">62%</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:62%"></div><div class="bb" style="width:38%"></div></div><div class="bar-lbl">posesión</div></div><div class="sv sv-b">38%</div></div>
+          <div class="stat-row"><div class="sv sv-a">7</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:58%"></div><div class="bb" style="width:42%"></div></div><div class="bar-lbl">remates</div></div><div class="sv sv-b">5</div></div>
+        </div>
+        <div class="mvp-strip"><div style="font-size:20px">⭐</div><div><div class="mvp-lbl">MVP del partido</div><div class="mvp-name">Mateo González</div><div class="mvp-detail">Los Pumas · 2 goles + figura</div></div></div>
+      </div>
+    </div>
+
+    <div class="g2" style="margin-top:40px;align-items:start">
+      <div>
+        <div class="sec-lbl">tabla sub 10</div>
+        <div class="card">
+          <table class="tabla-wrap" style="display:block">
+            <table><thead><tr><th>#</th><th class="tl">equipo</th><th>pts</th><th>+/−</th></tr></thead>
+            <tbody>
+              <tr><td><span class="pos p1">1</span></td><td class="tl"><div class="tc"><span class="tdot t1">PU</span>Los Pumas</div></td><td>9</td><td class="dpos">+7</td></tr>
+              <tr><td><span class="pos p2">2</span></td><td class="tl"><div class="tc"><span class="tdot t2">TO</span>Las Tormentas</div></td><td>7</td><td class="dpos">+4</td></tr>
+              <tr><td><span class="pos p3">3</span></td><td class="tl"><div class="tc"><span class="tdot t3">RY</span>Los Rayos</div></td><td>4</td><td class="dz">0</td></tr>
+            </tbody></table>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="sec-lbl">top goleadores</div>
+        <div class="card">
+          <div class="gol-item"><div class="gol-rank r1">1</div><div class="gol-av t1">MG</div><div class="gol-info"><div class="gol-nm">Mateo González</div><div class="gol-tm">Los Pumas · Sub 10</div></div><div class="gol-ct">5<span> goles</span></div></div>
+          <div class="gol-item"><div class="gol-rank r2">2</div><div class="gol-av t3">LP</div><div class="gol-info"><div class="gol-nm">Lucía Pino</div><div class="gol-tm">Los Rayos · Sub 10</div></div><div class="gol-ct">4<span> goles</span></div></div>
+          <div class="gol-item"><div class="gol-rank r3">3</div><div class="gol-av t4">SI</div><div class="gol-info"><div class="gol-nm">Santiago Ibarra</div><div class="gol-tm">Las Volcánicas · Sub 12</div></div><div class="gol-ct">3<span> goles</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ SOBRE LA LIGA ══════ -->
+<div id="sobre" class="page">
+  <div class="container">
+    <div class="sec-lbl">sobre la liga</div>
+    <div class="sec-title">Hockey Kids League nace para llenar un vacío</div>
+    <p class="sec-sub">Muchos niños y niñas entrenan hockey en Uruguay, pero no cuentan con un torneo donde competir regularmente. Esta liga viene a cambiar eso.</p>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">🏑</div><div class="feat-title">Hockey 5</div><div class="feat-desc">5 vs 5 en canchas de fútbol 5 adaptadas. Más participación, más acción.</div></div>
+      <div class="feat-card"><div class="feat-icon">🔄</div><div class="feat-title">Cambios libres</div><div class="feat-desc">Todos juegan. Los cambios son libres y continuos durante el partido.</div></div>
+      <div class="feat-card"><div class="feat-icon">⚡</div><div class="feat-title">Partidos dinámicos</div><div class="feat-desc">2 tiempos de 10 a 12 minutos. Formato pensado para los más chicos.</div></div>
+      <div class="feat-card"><div class="feat-icon">⚧</div><div class="feat-title">Mixto e inclusivo</div><div class="feat-desc">Niños y niñas compiten juntos. Deporte sin barreras desde el inicio.</div></div>
+      <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Stats reales</div><div class="feat-desc">Tabla de posiciones, goleadores, MVP por partido y estadísticas completas.</div></div>
+      <div class="feat-card"><div class="feat-icon">📸</div><div class="feat-title">Cobertura completa</div><div class="feat-desc">Fotos, highlights y contenido en redes sociales de cada fecha.</div></div>
+    </div>
+    <div class="sec-lbl">categorías</div>
+    <div class="cats-grid">
+      <div class="cat-card"><div class="cat-num">S6</div><div class="cat-label">Sub 6</div><div class="cat-ages">4 a 6 años</div></div>
+      <div class="cat-card"><div class="cat-num">S8</div><div class="cat-label">Sub 8</div><div class="cat-ages">7 a 8 años</div></div>
+      <div class="cat-card"><div class="cat-num">S10</div><div class="cat-label">Sub 10</div><div class="cat-ages">9 a 10 años</div></div>
+      <div class="cat-card"><div class="cat-num">S12</div><div class="cat-label">Sub 12</div><div class="cat-ages">11 a 12 años</div></div>
+    </div>
+    <div class="sec-lbl">experiencia hockey kids league</div>
+    <div class="exp-grid">
+      <div class="exp-item"><div class="exp-emoji">🏆</div><div class="exp-text">Tabla de posiciones actualizada</div></div>
+      <div class="exp-item"><div class="exp-emoji">📈</div><div class="exp-text">Estadísticas de jugadores</div></div>
+      <div class="exp-item"><div class="exp-emoji">⚽</div><div class="exp-text">Goleadores del torneo</div></div>
+      <div class="exp-item"><div class="exp-emoji">⭐</div><div class="exp-text">MVP por partido</div></div>
+      <div class="exp-item"><div class="exp-emoji">🎖️</div><div class="exp-text">Premios por categoría</div></div>
+      <div class="exp-item"><div class="exp-emoji">📱</div><div class="exp-text">Cobertura en redes</div></div>
+      <div class="exp-item"><div class="exp-emoji">📸</div><div class="exp-text">Fotografías y contenido</div></div>
+      <div class="exp-item"><div class="exp-emoji">👨‍👩‍👧</div><div class="exp-text">Experiencia familiar completa</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ REGLAMENTO ══════ -->
+<div id="reglamento" class="page">
+  <div class="container">
+    <div class="sec-lbl">reglamento oficial</div>
+    <div class="sec-title">Reglas de la liga</div>
+    <p class="sec-sub" style="margin-bottom:36px">Hockey Kids League · Temporada 2026</p>
+    <div class="regl-grid">
+      <div class="regl-card"><div class="regl-card-title">⚙️ Modalidad</div><ul class="regl-list"><li>5 jugadores por equipo en cancha</li><li>Cambios libres y continuos</li><li>2 tiempos de 10 a 12 minutos</li><li>Descanso de 5 minutos</li></ul></div>
+      <div class="regl-card"><div class="regl-card-title">🏟️ Cancha</div><ul class="regl-list"><li>Canchas de fútbol 5 adaptadas</li><li>Arcos de hockey reglamentarios</li><li>Superficie: sintético o grass</li><li>Dimensiones adaptadas por categoría</li></ul></div>
+      <div class="regl-card"><div class="regl-card-title">🏑 Equipamiento</div><ul class="regl-list"><li>Palo de hockey reglamentario</li><li>Canilleras obligatorias</li><li>Camiseta del equipo</li><li>Protector bucal recomendado</li></ul></div>
+      <div class="regl-card"><div class="regl-card-title">📋 Inscripción</div><ul class="regl-list"><li>Mínimo 7 jugadores por equipo</li><li>Máximo 12 jugadores por planilla</li><li>Edad según categoría correspondiente</li><li>Formulario completo obligatorio</li></ul></div>
+    </div>
+    <div class="regl-section">
+      <div class="regl-h">Sistema de puntos</div>
+      <ul class="regl-list"><li>Victoria: 3 puntos</li><li>Empate: 1 punto</li><li>Derrota: 0 puntos</li><li>Victoria por W.O. en caso de inasistencia</li></ul>
+    </div>
+    <div class="regl-section">
+      <div class="regl-h">Sanciones y tarjetas</div>
+      <ul class="regl-list"><li>Tarjeta amarilla: advertencia, 2 minutos fuera</li><li>Tarjeta roja: expulsión del partido</li><li>Comportamiento antideportivo: suspensión de fecha</li><li>Se prioriza el respeto y el fair play</li></ul>
+    </div>
+    <div class="regl-section">
+      <div class="regl-h">Playoffs y final</div>
+      <ul class="regl-list"><li>Top 4 de cada categoría clasifican a playoffs</li><li>Semifinales ida y vuelta o partido único</li><li>Final en sede neutral con ceremonias</li><li>Premios para los 3 primeros puestos</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ TORNEOS ══════ -->
+<div id="torneos" class="page">
+  <div class="container">
+    <div class="sec-lbl">calendario de torneos</div>
+    <div class="sec-title">Dos torneos por año</div>
+    <p class="sec-sub">La liga se desarrolla durante todo el año en dos competencias separadas con sus propias tablas y campeones.</p>
+    <div class="torneos-grid">
+      <div class="torneo-card"><span class="torneo-tag tag-a">Apertura</span><div class="torneo-name">Torneo Apertura</div><div class="torneo-period">Marzo → Julio 2026</div><ul class="torneo-items"><li>Fase regular (todos contra todos)</li><li>Tabla de posiciones por categoría</li><li>Sistema de puntos 3-1-0</li><li>Playoffs: semifinales + final</li><li>Ceremonias de cierre</li></ul></div>
+      <div class="torneo-card"><span class="torneo-tag tag-c">Clausura</span><div class="torneo-name">Torneo Clausura</div><div class="torneo-period">Agosto → Noviembre 2026</div><ul class="torneo-items"><li>Formato grupos + playoffs</li><li>Tabla de posiciones por categoría</li><li>Sistema de puntos 3-1-0</li><li>Gran final del año</li><li>Premios y reconocimientos</li></ul></div>
+    </div>
+    <div class="sec-lbl">formato de competencia</div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">📅</div><div class="feat-title">Jornadas semanales</div><div class="feat-desc">Partidos los fines de semana en sedes rotativas.</div></div>
+      <div class="feat-card"><div class="feat-icon">🏟️</div><div class="feat-title">Sedes estratégicas</div><div class="feat-desc">Náutico, Carrasco Polo, OCC, IVY, Woodlands, MVCC.</div></div>
+      <div class="feat-card"><div class="feat-icon">⚖️</div><div class="feat-title">Árbitros designados</div><div class="feat-desc">Cada partido con árbitro oficial asignado por la liga.</div></div>
+      <div class="feat-card"><div class="feat-icon">🏅</div><div class="feat-title">Premiación</div><div class="feat-desc">Medallas, trofeos y premios especiales por categoría.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PARTIDOS ══════ -->
+<div id="partidos" class="page">
+  <div class="liga-container">
+    <div class="sec-lbl">fecha 3 — 21 jun · Club Náutico · Sub 10</div>
+    <div class="partido">
+      <div class="partido-meta"><div class="pm-left"><span class="pm-tag">Partido 1</span>10:00hs</div><span class="badge badge-fin">Finalizado</span></div>
+      <div class="partido-body">
+        <div class="marcador"><div><div class="eq-nombre">Los Pumas</div><span class="eq-cat t1">Sub 10</span></div><div><div class="score-nums"><span class="sc-a">3</span><span class="sc-sep">–</span><span class="sc-b">1</span></div></div><div class="eq-b"><div class="eq-nombre">Las Tormentas</div><span class="eq-cat t2">Sub 10</span></div></div>
+        <div class="stats-sec">
+          <div class="stat-row"><div class="sv sv-a">62%</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:62%"></div><div class="bb" style="width:38%"></div></div><div class="bar-lbl">posesión</div></div><div class="sv sv-b">38%</div></div>
+          <div class="stat-row"><div class="sv sv-a">7</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:58%"></div><div class="bb" style="width:42%"></div></div><div class="bar-lbl">remates al arco</div></div><div class="sv sv-b">5</div></div>
+          <div class="stat-row"><div class="sv sv-a">14</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:70%"></div><div class="bb" style="width:30%"></div></div><div class="bar-lbl">pases completados</div></div><div class="sv sv-b">6</div></div>
+          <div class="stat-row"><div class="sv" style="color:var(--red)">2</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:40%;background:var(--red)"></div><div class="bb" style="width:20%;background:#7a2020"></div></div><div class="bar-lbl">faltas</div></div><div class="sv" style="color:#7a2020">1</div></div>
+        </div>
+        <div class="mvp-strip"><div style="font-size:20px">⭐</div><div><div class="mvp-lbl">MVP del partido</div><div class="mvp-name">Mateo González</div><div class="mvp-detail">Los Pumas · 2 goles + 1 asistencia</div></div></div>
+      </div>
+    </div>
+    <div class="partido">
+      <div class="partido-meta"><div class="pm-left"><span class="pm-tag">Partido 2</span>11:30hs · Sub 8</div><span class="badge badge-fin">Finalizado</span></div>
+      <div class="partido-body">
+        <div class="marcador"><div><div class="eq-nombre">Los Supersonics</div><span class="eq-cat t5">Sub 8</span></div><div><div class="score-nums"><span class="sc-a">2</span><span class="sc-sep">–</span><span class="sc-a">2</span></div></div><div class="eq-b"><div class="eq-nombre">Los Rayos</div><span class="eq-cat t3">Sub 8</span></div></div>
+        <div class="stats-sec">
+          <div class="stat-row"><div class="sv sv-a">51%</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:51%"></div><div class="bb" style="width:49%"></div></div><div class="bar-lbl">posesión</div></div><div class="sv sv-b">49%</div></div>
+          <div class="stat-row"><div class="sv sv-a">5</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:50%"></div><div class="bb" style="width:50%"></div></div><div class="bar-lbl">remates al arco</div></div><div class="sv sv-b">5</div></div>
+        </div>
+        <div class="mvp-strip"><div style="font-size:20px">⭐</div><div><div class="mvp-lbl">MVP del partido</div><div class="mvp-name">Lucía Pino</div><div class="mvp-detail">Los Rayos · 2 goles</div></div></div>
+      </div>
+    </div>
+    <div class="sec-lbl" style="margin-top:28px">fecha 2 — 14 jun · Carrasco Polo Club</div>
+    <div class="partido">
+      <div class="partido-meta"><div class="pm-left"><span class="pm-tag">Partido 1</span>10:00hs · Sub 12</div><span class="badge badge-fin">Finalizado</span></div>
+      <div class="partido-body">
+        <div class="marcador"><div><div class="eq-nombre">Las Volcánicas</div><span class="eq-cat t4">Sub 12</span></div><div><div class="score-nums"><span class="sc-b">1</span><span class="sc-sep">–</span><span class="sc-a">3</span></div></div><div class="eq-b"><div class="eq-nombre">Las Furias</div><span class="eq-cat t6">Sub 12</span></div></div>
+        <div class="stats-sec">
+          <div class="stat-row"><div class="sv sv-a">35%</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:35%"></div><div class="bb" style="width:65%"></div></div><div class="bar-lbl">posesión</div></div><div class="sv sv-b">65%</div></div>
+          <div class="stat-row"><div class="sv sv-a">4</div><div class="bar-col"><div class="bar-track"><div class="ba" style="width:33%"></div><div class="bb" style="width:67%"></div></div><div class="bar-lbl">remates al arco</div></div><div class="sv sv-b">8</div></div>
+        </div>
+        <div class="mvp-strip"><div style="font-size:20px">⭐</div><div><div class="mvp-lbl">MVP del partido</div><div class="mvp-name">Valentina Ramos</div><div class="mvp-detail">Las Furias · 2 goles + figura</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ TABLA ══════ -->
+<div id="tabla" class="page">
+  <div class="liga-container">
+    <div class="sec-lbl">tabla de posiciones · Apertura 2026</div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap">
+      <button class="ch sel" onclick="switchCat(this,'sub10')">Sub 10</button>
+      <button class="ch" onclick="switchCat(this,'sub8')">Sub 8</button>
+      <button class="ch" onclick="switchCat(this,'sub12')">Sub 12</button>
+      <button class="ch" onclick="switchCat(this,'sub6')">Sub 6</button>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>#</th><th class="tl">equipo</th><th>pts</th><th>pj</th><th>pg</th><th>pe</th><th>pp</th><th>gf</th><th>gc</th><th>+/−</th></tr></thead>
+          <tbody>
+            <tr><td><span class="pos p1">1</span></td><td class="tl"><div class="tc"><span class="tdot t1">PU</span>Los Pumas</div></td><td>9</td><td>3</td><td>3</td><td>0</td><td>0</td><td>9</td><td>2</td><td class="dpos">+7</td></tr>
+            <tr><td><span class="pos p2">2</span></td><td class="tl"><div class="tc"><span class="tdot t2">TO</span>Las Tormentas</div></td><td>7</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7</td><td>3</td><td class="dpos">+4</td></tr>
+            <tr><td><span class="pos p3">3</span></td><td class="tl"><div class="tc"><span class="tdot t3">RY</span>Los Rayos</div></td><td>4</td><td>3</td><td>1</td><td>1</td><td>1</td><td>5</td><td>5</td><td class="dz">0</td></tr>
+            <tr><td><span class="pos pn">4</span></td><td class="tl"><div class="tc"><span class="tdot t4">VO</span>Las Volcánicas</div></td><td>3</td><td>3</td><td>1</td><td>0</td><td>2</td><td>4</td><td>8</td><td class="dneg">−4</td></tr>
+            <tr><td><span class="pos pn">5</span></td><td class="tl"><div class="tc"><span class="tdot t5">SS</span>Los Supersonics</div></td><td>3</td><td>3</td><td>1</td><td>0</td><td>2</td><td>5</td><td>9</td><td class="dneg">−4</td></tr>
+            <tr><td><span class="pos pn">6</span></td><td class="tl"><div class="tc"><span class="tdot t6">FU</span>Las Furias</div></td><td>1</td><td>3</td><td>0</td><td>1</td><td>2</td><td>3</td><td>9</td><td class="dneg">−6</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sec-lbl">stats promedio por equipo</div>
+    <div class="card">
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th class="tl">equipo</th><th>posesión</th><th>remates/p</th><th>pases/p</th><th>mvps ⭐</th></tr></thead>
+          <tbody>
+            <tr><td class="tl"><div class="tc"><span class="tdot t1">PU</span>Los Pumas</div></td><td style="color:var(--green);font-weight:700">67%</td><td>8.3</td><td>13.1</td><td style="color:var(--gold);font-weight:700">3</td></tr>
+            <tr><td class="tl"><div class="tc"><span class="tdot t2">TO</span>Las Tormentas</div></td><td>51%</td><td>7.1</td><td>10.2</td><td>1</td></tr>
+            <tr><td class="tl"><div class="tc"><span class="tdot t3">RY</span>Los Rayos</div></td><td>49%</td><td>6.8</td><td>9.8</td><td>1</td></tr>
+            <tr><td class="tl"><div class="tc"><span class="tdot t4">VO</span>Las Volcánicas</div></td><td style="color:var(--red)">41%</td><td>5.2</td><td>8.4</td><td>0</td></tr>
+            <tr><td class="tl"><div class="tc"><span class="tdot t5">SS</span>Los Supersonics</div></td><td>44%</td><td>5.8</td><td>8.9</td><td>0</td></tr>
+            <tr><td class="tl"><div class="tc"><span class="tdot t6">FU</span>Las Furias</div></td><td style="color:var(--red)">38%</td><td>4.9</td><td>7.6</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ GOLEADORES ══════ -->
+<div id="goleadores" class="page">
+  <div class="liga-container">
+    <div class="g2" style="align-items:start;gap:24px">
+      <div>
+        <div class="sec-lbl">ranking goleadores</div>
+        <div class="card">
+          <div class="gol-item"><div class="gol-rank r1">1</div><div class="gol-av t1">MG</div><div class="gol-info"><div class="gol-nm">Mateo González</div><div class="gol-tm">Los Pumas · Sub 10</div></div><div class="gol-ct">5<span> goles</span></div></div>
+          <div class="gol-item"><div class="gol-rank r2">2</div><div class="gol-av t3">LP</div><div class="gol-info"><div class="gol-nm">Lucía Pino</div><div class="gol-tm">Los Rayos · Sub 10</div></div><div class="gol-ct">4<span> goles</span></div></div>
+          <div class="gol-item"><div class="gol-rank r3">3</div><div class="gol-av t4">SI</div><div class="gol-info"><div class="gol-nm">Santiago Ibarra</div><div class="gol-tm">Las Volcánicas · Sub 12</div></div><div class="gol-ct">3<span> goles</span></div></div>
+          <div class="gol-item"><div class="gol-rank rn">4</div><div class="gol-av t2">VR</div><div class="gol-info"><div class="gol-nm">Valentina Ramos</div><div class="gol-tm">Las Furias · Sub 12</div></div><div class="gol-ct">3<span> goles</span></div></div>
+          <div class="gol-item"><div class="gol-rank rn">5</div><div class="gol-av t5">TC</div><div class="gol-info"><div class="gol-nm">Tomás Castro</div><div class="gol-tm">Los Supersonics · Sub 8</div></div><div class="gol-ct">2<span> goles</span></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-lbl">ranking mvp del partido</div>
+        <div class="card" style="margin-bottom:18px">
+          <div class="gol-item"><div style="font-size:22px;width:30px;text-align:center">⭐</div><div class="gol-av t1">MG</div><div class="gol-info"><div class="gol-nm">Mateo González</div><div class="gol-tm">Los Pumas</div></div><div style="font-size:16px;font-weight:800;color:var(--gold);font-style:italic">3×</div></div>
+          <div class="gol-item"><div style="font-size:18px;width:30px;text-align:center;opacity:.5">⭐</div><div class="gol-av t3">LP</div><div class="gol-info"><div class="gol-nm">Lucía Pino</div><div class="gol-tm">Los Rayos</div></div><div style="font-size:16px;font-weight:800;color:var(--text2);font-style:italic">1×</div></div>
+          <div class="gol-item"><div style="font-size:18px;width:30px;text-align:center;opacity:.5">⭐</div><div class="gol-av t2">VR</div><div class="gol-info"><div class="gol-nm">Valentina Ramos</div><div class="gol-tm">Las Furias</div></div><div style="font-size:16px;font-weight:800;color:var(--text2);font-style:italic">1×</div></div>
+        </div>
+        <div class="sec-lbl">stats temporada</div>
+        <div class="g2" style="gap:10px">
+          <div class="stat-mini"><div class="stat-mini-num">34</div><div class="stat-mini-lbl">goles anotados</div></div>
+          <div class="stat-mini"><div class="stat-mini-num">58%</div><div class="stat-mini-lbl">posesión líder</div></div>
+          <div class="stat-mini"><div class="stat-mini-num">7.4</div><div class="stat-mini-lbl">remates/partido</div></div>
+          <div class="stat-mini"><div class="stat-mini-num">10.5</div><div class="stat-mini-lbl">pases/partido</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PROXIMOS ══════ -->
+<div id="proximos" class="page">
+  <div class="liga-container">
+    <div class="sec-lbl">fecha 4 — 28 junio · IVY Instituto de Deportes</div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="prox-item"><div><div class="prox-vs">Los Pumas vs Las Furias <span style="font-size:10px;color:var(--text3)">· Sub 10</span></div><div class="prox-meta">28 jun<span class="pdot"></span>10:00hs<span class="pdot"></span>IVY</div></div><span class="badge badge-prx">Próximo</span></div>
+      <div class="prox-item"><div><div class="prox-vs">Los Supersonics vs Los Rayos <span style="font-size:10px;color:var(--text3)">· Sub 8</span></div><div class="prox-meta">28 jun<span class="pdot"></span>11:00hs<span class="pdot"></span>IVY</div></div><span class="badge badge-prx">Próximo</span></div>
+      <div class="prox-item"><div><div class="prox-vs">Las Volcánicas vs Las Tormentas <span style="font-size:10px;color:var(--text3)">· Sub 12</span></div><div class="prox-meta">28 jun<span class="pdot"></span>12:00hs<span class="pdot"></span>IVY</div></div><span class="badge badge-prx">Próximo</span></div>
+    </div>
+    <div class="sec-lbl">fecha 5 — 5 julio · Woodlands Cricket Club</div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="prox-item"><div><div class="prox-vs">Los Pumas vs Las Tormentas <span style="font-size:10px;color:var(--text3)">· Sub 10</span></div><div class="prox-meta">5 jul<span class="pdot"></span>10:00hs<span class="pdot"></span>Woodlands</div></div><span class="badge badge-fin">Confirmado</span></div>
+      <div class="prox-item"><div><div class="prox-vs">Las Furias vs Los Rayos <span style="font-size:10px;color:var(--text3)">· Sub 12</span></div><div class="prox-meta">5 jul<span class="pdot"></span>11:00hs<span class="pdot"></span>Woodlands</div></div><span class="badge badge-fin">Confirmado</span></div>
+    </div>
+    <div class="sec-lbl">fecha 6 — 12 julio · MVCC Montevideo Cricket Club</div>
+    <div class="card">
+      <div class="prox-item"><div><div class="prox-vs">Los Supersonics vs Las Volcánicas</div><div class="prox-meta">12 jul<span class="pdot"></span>10:00hs<span class="pdot"></span>MVCC</div></div><span class="badge badge-pend">Por confirmar</span></div>
+      <div class="prox-item"><div><div class="prox-vs">Los Rayos vs Las Tormentas</div><div class="prox-meta">12 jul<span class="pdot"></span>11:00hs<span class="pdot"></span>MVCC</div></div><span class="badge badge-pend">Por confirmar</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ INSCRIPCION ══════ -->
+<div id="inscripcion" class="page">
+  <div class="container">
+    <div class="sec-lbl">sumate a la liga</div>
+    <div class="sec-title">Inscribí tu equipo</div>
+    <p class="sec-sub">Equipos de colegios, clubes deportivos y equipos independientes son bienvenidos.</p>
+    <div class="inscripcion-grid">
+      <div class="insc-left">
+        <div class="insc-item"><div class="insc-icon">🏫</div><div><div class="insc-title">Colegios</div><div class="insc-desc">Si tu colegio ya tiene hockey, la Hockey Kids League es el complemento ideal para dar competencia a tus alumnos.</div></div></div>
+        <div class="insc-item"><div class="insc-icon">🏑</div><div><div class="insc-title">Clubes deportivos</div><div class="insc-desc">Clubes de hockey, polideportivos y centros de entrenamiento con categorías infantiles.</div></div></div>
+        <div class="insc-item"><div class="insc-icon">👥</div><div><div class="insc-title">Equipos independientes</div><div class="insc-desc">Grupos de amigos, barrios o familias que quieran armar un equipo y competir.</div></div></div>
+        <div class="insc-item"><div class="insc-icon">📋</div><div><div class="insc-title">¿Qué necesitás?</div><div class="insc-desc">Mínimo 7 jugadores, camiseta del equipo, canilleras y ganas. Nosotros ponemos el resto.</div></div></div>
+      </div>
+      <div>
+        <div class="form-card">
+          <div class="form-header"><h3>Formulario de inscripción</h3><p>Completá los datos y te contactamos</p></div>
+          <div class="form-body">
+            <div class="form-group"><label class="form-label">Nombre del equipo / institución</label><input type="text" class="form-input" placeholder="ej: Pumas del Náutico"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Categoría</label>
+                <select class="form-input"><option>Sub 6 (4–6 años)</option><option>Sub 8 (7–8 años)</option><option>Sub 10 (9–10 años)</option><option>Sub 12 (11–12 años)</option></select>
+              </div>
+              <div class="form-group"><label class="form-label">Tipo</label>
+                <select class="form-input"><option>Colegio</option><option>Club deportivo</option><option>Equipo independiente</option></select>
+              </div>
+            </div>
+            <div class="form-group"><label class="form-label">Nombre del responsable</label><input type="text" class="form-input" placeholder="Nombre y apellido"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Teléfono / WhatsApp</label><input type="text" class="form-input" placeholder="+598 9X XXX XXX"></div>
+              <div class="form-group"><label class="form-label">Email</label><input type="text" class="form-input" placeholder="email@ejemplo.com"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Cantidad aproximada de jugadores</label><input type="text" class="form-input" placeholder="ej: 10 jugadores"></div>
+            <div class="form-group"><label class="form-label">Comentarios adicionales <span style="font-weight:400;color:var(--text3)">(opcional)</span></label><input type="text" class="form-input" placeholder="algo que quieras aclarar"></div>
+            <button class="btn-form" onclick="submitInscripcion()">Enviar inscripción →</button>
+            <div class="form-success" id="form-success">✅ ¡Gracias! Te contactamos en las próximas 24–48hs para confirmar tu participación.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ COLEGIOS ══════ -->
+<div id="colegios" class="page">
+  <div class="container">
+    <div class="sec-lbl">para instituciones</div>
+    <div class="sec-title">La liga ideal para tu colegio</div>
+    <p class="sec-sub">Si tu institución ya cuenta con hockey, la Hockey Kids League es el complemento perfecto. Ofrecemos estructura, calendario y visibilidad.</p>
+    <div class="colegios-grid">
+      <div class="colegio-card"><div class="colegio-icon">📅</div><div><div class="colegio-title">Calendario definido</div><div class="colegio-desc">Fechas programadas con anticipación para que puedas organizar tu planificación.</div></div></div>
+      <div class="colegio-card"><div class="colegio-icon">🏟️</div><div><div class="colegio-title">Competencia organizada</div><div class="colegio-desc">Árbitros, tabla de posiciones y formato profesional en cada fecha.</div></div></div>
+      <div class="colegio-card"><div class="colegio-icon">🌱</div><div><div class="colegio-title">Desarrollo de jugadores</div><div class="colegio-desc">Espacio de crecimiento real para tus alumnos desde edades tempranas.</div></div></div>
+      <div class="colegio-card"><div class="colegio-icon">🤝</div><div><div class="colegio-title">Integración</div><div class="colegio-desc">Tu institución comparte espacios con otros colegios y clubes del país.</div></div></div>
+      <div class="colegio-card"><div class="colegio-icon">📱</div><div><div class="colegio-title">Visibilidad</div><div class="colegio-desc">Tu equipo aparece en la tabla, stats y redes sociales de la liga.</div></div></div>
+      <div class="colegio-card"><div class="colegio-icon">🏅</div><div><div class="colegio-title">Premios y reconocimientos</div><div class="colegio-desc">Medallas, trofeos y menciones especiales para equipos e instituciones.</div></div></div>
+    </div>
+    <div style="text-align:center">
+      <button class="cta-primary" onclick="goTo('inscripcion',document.querySelectorAll('.main-nav button')[8])">Sumar mi institución →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ GALERÍA ══════ -->
+<div id="galeria" class="page">
+  <div class="container">
+    <div class="sec-lbl">galería</div>
+    <div class="sec-title">Momentos de la liga</div>
+    <p class="sec-sub">Fotos de partidos, jugadores y momentos destacados de cada fecha.</p>
+    <div class="galeria-grid">
+      <div class="galeria-item">🏑</div><div class="galeria-item">⚽</div><div class="galeria-item">🏆</div>
+      <div class="galeria-item">👦</div><div class="galeria-item">👧</div><div class="galeria-item">🌟</div>
+      <div class="galeria-item">🎯</div><div class="galeria-item">🏟️</div><div class="galeria-item">📸</div>
+      <div class="galeria-item">🎉</div><div class="galeria-item">🏅</div><div class="galeria-item">🤝</div>
+    </div>
+    <div style="text-align:center;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r)">
+      <div style="font-size:20px;margin-bottom:8px">📸</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:4px">Fotografías y videos de cada fecha</div>
+      <div style="font-size:11px;color:var(--text3)">Seguinos en Instagram para ver todo el contenido en tiempo real</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CONTACTO ══════ -->
+<div id="contacto" class="page">
+  <div class="container">
+    <div class="sec-lbl">contacto</div>
+    <div class="sec-title">Hablemos</div>
+    <p class="sec-sub">¿Querés participar, recibir información o sumarte como árbitro? Escribinos.</p>
+    <div class="contact-grid">
+      <div class="contact-card"><div class="contact-icon">📱</div><div class="contact-type">WhatsApp</div><div class="contact-val">+598 9X XXX XXX</div></div>
+      <div class="contact-card"><div class="contact-icon">📧</div><div class="contact-type">Email</div><div class="contact-val">info@hockeykidsleague.uy</div></div>
+      <div class="contact-card"><div class="contact-icon">📍</div><div class="contact-type">Ubicación</div><div class="contact-val">Montevideo, Uruguay</div></div>
+    </div>
+    <div class="social-row" style="margin-bottom:36px">
+      <button class="social-btn">📷 Instagram</button>
+      <button class="social-btn">📘 Facebook</button>
+      <button class="social-btn">🎥 YouTube</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PANEL JUEZ ══════ -->
+<div id="admin" class="page">
+<div class="admin-wrap">
+  <div style="margin-bottom:24px">
+    <div style="font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.5px;margin-bottom:4px;font-style:italic">Panel del Árbitro / Juez</div>
+    <div style="font-size:12px;color:var(--text3)">Cargá el resultado y las stats del partido. Solo árbitros habilitados.</div>
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-hd"><span class="admin-step">01</span><h3>Datos del partido</h3></div>
+    <div class="admin-bd">
+      <div class="row2">
+        <div class="fg"><label class="fl">Fecha del torneo</label><select id="f-fecha"><option>Fecha 4 — 28 jun 2026</option><option>Fecha 5 — 5 jul 2026</option><option>Fecha 6 — 12 jul 2026</option></select></div>
+        <div class="fg"><label class="fl">Cancha</label><select id="f-cancha"><option>Club Náutico de Montevideo</option><option>Carrasco Polo Club</option><option>OCC — Oriental Cricket Club</option><option>IVY — Instituto de Deportes</option><option>Woodlands Cricket Club</option><option>MVCC — Montevideo Cricket Club</option></select></div>
+      </div>
+      <div class="row3">
+        <div class="fg"><label class="fl">Categoría</label><select id="f-cat"><option>Sub 6</option><option>Sub 8</option><option>Sub 10</option><option>Sub 12</option></select></div>
+        <div class="fg"><label class="fl">Equipo local</label><select id="f-local" onchange="updateAll()"><option value="PU">Los Pumas</option><option value="TO">Las Tormentas</option><option value="RY">Los Rayos</option><option value="VO">Las Volcánicas</option><option value="SS">Los Supersonics</option><option value="FU">Las Furias</option></select></div>
+        <div class="fg"><label class="fl">Equipo visitante</label><select id="f-visita" onchange="updateAll()"><option value="TO">Las Tormentas</option><option value="PU">Los Pumas</option><option value="RY">Los Rayos</option><option value="VO">Las Volcánicas</option><option value="SS">Los Supersonics</option><option value="FU">Las Furias</option></select></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-hd"><span class="admin-step">02</span><h3>Resultado final</h3></div>
+    <div class="admin-bd">
+      <div class="score-row">
+        <div class="sc-label" id="lbl-local">Los Pumas</div>
+        <div class="counter"><button onclick="chgScore('local',-1)">−</button><span id="sc-local">0</span><button onclick="chgScore('local',1)">+</button></div>
+        <div class="score-sep-lg">–</div>
+        <div class="counter"><button onclick="chgScore('visita',-1)">−</button><span id="sc-visita">0</span><button onclick="chgScore('visita',1)">+</button></div>
+        <div class="sc-label r" id="lbl-visita">Las Tormentas</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-hd"><span class="admin-step">03</span><h3>¿Cómo fue la posesión?</h3></div>
+    <div class="admin-bd">
+      <div style="font-size:10px;color:var(--text3);margin-bottom:8px">Estimá quién tuvo más la pelota durante el partido</div>
+      <div class="choice-wrap">
+        <button class="ch" onclick="sel('pos',this,'30-70')">Dominó el visitante<small>30% – 70%</small></button>
+        <button class="ch" onclick="sel('pos',this,'40-60')">Algo más visitante<small>40% – 60%</small></button>
+        <button class="ch" onclick="sel('pos',this,'50-50')">Muy parejo<small>50% – 50%</small></button>
+        <button class="ch" onclick="sel('pos',this,'60-40')">Algo más local<small>60% – 40%</small></button>
+        <button class="ch" onclick="sel('pos',this,'70-30')">Dominó el local<small>70% – 30%</small></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-hd"><span class="admin-step">04</span><h3>Ritmo del juego</h3></div>
+    <div class="admin-bd">
+      <div class="choice-wrap">
+        <button class="ch" onclick="sel('ritmo',this,'lento')">🐢 Tranquilo<small>Pocas jugadas, pausado</small></button>
+        <button class="ch" onclick="sel('ritmo',this,'normal')">🏃 Normal<small>Fluido, ida y vuelta</small></button>
+        <button class="ch" onclick="sel('ritmo',this,'intenso')">🔥 Intenso<small>Frenético, muchas llegadas</small></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-hd"><span class="admin-step">05</span><h3>Faltas y tarjetas</h3></div>
+    <div class="admin-bd">
+      <div class="row2">
+        <div class="fg"><label class="fl">Faltas — local</label><div class="choice-wrap"><button class="ch" onclick="sel('fl',this,'0')">0</button><button class="ch" onclick="sel('fl',this,'1')">1</button><button class="ch" onclick="sel('fl',this,'2')">2</button><button class="ch" onclick="sel('fl',this,'3')">3</button><button class="ch" onclick="sel('fl',this,'4')">4+</button></div></div>
+        <div class="fg"><label class="fl">Faltas — visitante</label><div class="choice-wrap"><button class="ch" onclick="sel('fv',this,'0')">0</button><button class="ch" onclick="sel('fv',this,'1')">1</button><button class="ch" onclick="sel('fv',this,'2')">2</button><button class="ch" onclick="sel('fv',this,'3')">3</button><button class="ch" onclick="sel('fv',this,'4')">4+</button></div></div>
+      </div>
+      <div class="row2" style="margin-top:12px">
+        <div class="fg"><label class="fl">Tarjetas amarillas 🟨</label><div class="choice-wrap"><button class="ch" onclick="sel('ta',this,'0')">0</button><button class="ch" onclick="sel('ta',this,'1')">1</button><button class="ch" onclick="sel('ta',this,'2')">2</button><button class="ch" onclick="sel('ta',this,'3')">3+</button></div></div>
+        <div class="fg"><label class="fl">Tarjetas rojas 🟥</label><div class="choice-wrap"><button class="ch" onclick="sel('tr',this,'0')">0</button><button class="ch" onclick="sel('tr',this,'1')">1</button><button class="ch" onclick="sel('tr',this,'2')">2+</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-hd"><span class="admin-step">06</span><h3>MVP del partido ⭐</h3></div>
+    <div class="admin-bd">
+      <div style="font-size:10px;color:var(--text3);margin-bottom:10px">Seleccioná la figura del partido</div>
+      <div class="mvp-pick" id="mvp-grid"></div>
+      <div class="fg" style="margin-top:12px"><label class="fl">Motivo <span style="font-weight:400;color:var(--text3)">(opcional)</span></label><input type="text" id="mvp-motivo" placeholder="ej: 2 goles y dominó el mediocampo"></div>
+    </div>
+  </div>
+
+  <div class="admin-card">
+    <div class="admin-hd"><span class="admin-step">07</span><h3>Stats estimadas</h3></div>
+    <div class="admin-bd">
+      <div class="derived">
+        <div class="derived-title">calculadas automáticamente</div>
+        <div class="derived-g">
+          <div class="d-stat"><div class="d-num" id="d-pl">—</div><div class="d-lbl">posesión local</div></div>
+          <div class="d-stat"><div class="d-num" id="d-pv">—</div><div class="d-lbl">posesión visitante</div></div>
+          <div class="d-stat"><div class="d-num" id="d-pasl">—</div><div class="d-lbl">pases local</div></div>
+          <div class="d-stat"><div class="d-num" id="d-pasv">—</div><div class="d-lbl">pases visitante</div></div>
+          <div class="d-stat"><div class="d-num" id="d-reml">—</div><div class="d-lbl">remates local</div></div>
+          <div class="d-stat"><div class="d-num" id="d-remv">—</div><div class="d-lbl">remates visitante</div></div>
+        </div>
+      </div>
+      <div class="row4" style="margin-top:12px">
+        <div class="fg"><label class="fl">Pases local</label><input type="number" id="a-pl" placeholder="auto" min="0"></div>
+        <div class="fg"><label class="fl">Pases visitante</label><input type="number" id="a-pv" placeholder="auto" min="0"></div>
+        <div class="fg"><label class="fl">Remates local</label><input type="number" id="a-rl" placeholder="auto" min="0"></div>
+        <div class="fg"><label class="fl">Remates visitante</label><input type="number" id="a-rv" placeholder="auto" min="0"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-save" onclick="guardar()">Guardar partido →</button>
+  <div class="ok-msg" id="ok-msg">✅ Partido guardado. Ya aparece en la tabla y el historial de la liga.</div>
+</div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><div class="dot"></div>Hockey Kids League</div>
+      <div class="footer-text">La primera liga infantil de hockey en Uruguay · Montevideo 2026</div>
+    </div>
+    <div class="footer-links">
+      <span onclick="goTo('sobre',document.querySelectorAll('.main-nav button')[1])">Sobre la liga</span>
+      <span onclick="goTo('reglamento',document.querySelectorAll('.main-nav button')[2])">Reglamento</span>
+      <span onclick="goTo('inscripcion',document.querySelectorAll('.main-nav button')[8])">Inscripción</span>
+      <span onclick="goTo('contacto',document.querySelectorAll('.main-nav button')[11])">Contacto</span>
+      <span>Instagram</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV
+function goTo(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.main-nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// MODAL
+function openModal(){document.getElementById('login-modal').classList.add('open')}
+function closeModal(){document.getElementById('login-modal').classList.remove('open')}
+document.getElementById('login-modal').addEventListener('click',function(e){if(e.target===this)closeModal()});
+
+function switchLoginTab(t,btn){
+  document.querySelectorAll('.login-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.login-form').forEach(f=>f.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('lf-'+t).classList.add('active');
+}
+
+// TEAMS
+var teams={
+  PU:{name:'Los Pumas',col:'t1',players:['Mateo González','Sofía López','Franco Ruiz','Valentina Castro','Emilio Díaz']},
+  TO:{name:'Las Tormentas',col:'t2',players:['Agustín Mora','Feli Ruiz','Nati Rodríguez','Sofi Pérez','Ceci López']},
+  RY:{name:'Los Rayos',col:'t3',players:['Lucía Pino','Ana Martínez','Vale Torres','Isa Soria','Pau Fernández']},
+  VO:{name:'Las Volcánicas',col:'t4',players:['Santiago Ibarra','Rosi Castro','Laura Méndez','Gabi Silveira','Marta Ríos']},
+  SS:{name:'Los Supersonics',col:'t5',players:['Tomás Castro','Dani Herrera','Nati López','Sol Pereyra','Cami Vargas']},
+  FU:{name:'Las Furias',col:'t6',players:['Valentina Ramos','Ro Giménez','Nina Suárez','Ari Blanco','Maya Leiva']}
+};
+
+function ini(n){return n.split(' ').map(w=>w[0]).slice(0,2).join('')}
+
+function buildMvp(la,lv){
+  var g=document.getElementById('mvp-grid');g.innerHTML='';selMvp='';
+  var all=[];
+  teams[la].players.forEach(p=>all.push({name:p,t:teams[la]}));
+  teams[lv].players.forEach(p=>all.push({name:p,t:teams[lv]}));
+  all.forEach(function(p){
+    var d=document.createElement('div');d.className='mvp-c';
+    d.innerHTML='<div class="mc-av '+p.t.col+'">'+ini(p.name)+'</div><div class="mc-nm">'+p.name+'</div><div class="mc-tm">'+p.t.name+'</div>';
+    d.onclick=function(){document.querySelectorAll('.mvp-c').forEach(c=>c.classList.remove('sel'));this.classList.add('sel');selMvp=p.name};
+    g.appendChild(d);
+  });
+}
+var selMvp='';buildMvp('PU','TO');
+
+function updateAll(){
+  var la=document.getElementById('f-local').value;
+  var lv=document.getElementById('f-visita').value;
+  document.getElementById('lbl-local').textContent=teams[la].name;
+  document.getElementById('lbl-visita').textContent=teams[lv].name;
+  buildMvp(la,lv);
+}
+
+// LOGIN
+function loginArbitro(){
+  closeModal();
+  goTo('admin',document.querySelector('.main-nav button:last-child'));
+}
+function loginEquipo(){
+  var eq=document.getElementById('login-equipo-sel').value;
+  if(!eq){alert('Seleccioná tu equipo');return}
+  var panel=document.getElementById('formacion-panel');
+  panel.classList.add('visible');
+  document.getElementById('eq-nombre-form').textContent=teams[eq].name;
+  var list=document.getElementById('players-list');list.innerHTML='';
+  for(var i=1;i<=7;i++){
+    var row=document.createElement('div');row.className='player-row';
+    row.innerHTML='<div class="player-num">'+i+'</div><input class="player-input" placeholder="Nombre del jugador #'+i+'">';
+    list.appendChild(row);
+  }
+}
+function confirmarFormacion(){
+  document.getElementById('confirm-badge').style.display='block';
+  setTimeout(function(){closeModal()},1500);
+}
+
+// SCORE
+var scores={local:0,visita:0};
+function chgScore(t,d){scores[t]=Math.max(0,scores[t]+d);document.getElementById('sc-'+t).textContent=scores[t];recalc()}
+
+// CHOICES
+var ch={};
+function sel(g,btn,v){
+  btn.parentElement.querySelectorAll('.ch').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');ch[g]=v;recalc();
+}
+
+function recalc(){
+  var pos=ch['pos'],ritmo=ch['ritmo'];if(!pos||!ritmo)return;
+  var pp=pos.split('-'),pL=parseInt(pp[0]),pV=parseInt(pp[1]);
+  document.getElementById('d-pl').textContent=pL+'%';
+  document.getElementById('d-pv').textContent=pV+'%';
+  var base={lento:12,normal:20,intenso:30}[ritmo]||20;
+  document.getElementById('d-pasl').textContent=Math.round(base*(pL/50));
+  document.getElementById('d-pasv').textContent=Math.round(base*(pV/50));
+  document.getElementById('d-reml').textContent=Math.max(scores.local+1,Math.round((scores.local+2)*(pL/55)));
+  document.getElementById('d-remv').textContent=Math.max(scores.visita+1,Math.round((scores.visita+2)*(pV/55)));
+}
+
+function guardar(){
+  if(!ch['pos']||!ch['ritmo']||!selMvp){alert('Completá posesión, ritmo y MVP antes de guardar.');return}
+  var m=document.getElementById('ok-msg');m.style.display='block';m.scrollIntoView({behavior:'smooth'});
+}
+
+// INSCRIPCION
+function submitInscripcion(){
+  var s=document.getElementById('form-success');s.style.display='block';s.scrollIntoView({behavior:'smooth'});
+}
+
+// CAT SWITCH (tabla)
+function switchCat(btn){
+  document.querySelectorAll('.choice-wrap .ch').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+</script>
+</body>
+</html>
